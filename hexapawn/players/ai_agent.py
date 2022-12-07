@@ -36,7 +36,7 @@ class AiAgent(Agent):
         except Exception:
             return False
 
-        if value == Pawns.AGENT_PAWN:
+        if value == Pawns.USER_PAWN:
             return True
         else:
             return False
@@ -50,7 +50,7 @@ class AiAgent(Agent):
         except Exception:
             return False
 
-        if value == Pawns.AGENT_PAWN:
+        if value == Pawns.USER_PAWN:
             return True
         else:
             return False
