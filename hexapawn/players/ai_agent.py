@@ -3,14 +3,15 @@ import random
 from hexapawn.environment.board import Board
 from hexapawn.environment.coordinate import Coordinate
 from hexapawn.environment.pawns import Pawns
+from hexapawn.players.action_response import ActionResponse
 from hexapawn.players.agent import Agent
+from hexapawn.players.minimax import find_best_move
 from hexapawn.players.no_action_exception import NoAgentActionException
 
 
 class AiAgent(Agent):
-    def __init__(self, is_success=False, is_failure=False):
-        self.is_success = is_success
-        self.is_failure = is_failure
+    def __init__(self):
+        pass
 
     def can_move_up(self, coordinate: Coordinate, board: Board):
 
@@ -36,7 +37,7 @@ class AiAgent(Agent):
         except Exception:
             return False
 
-        if value == Pawns.AGENT_PAWN:
+        if value == Pawns.USER_PAWN:
             return True
         else:
             return False
@@ -50,7 +51,7 @@ class AiAgent(Agent):
         except Exception:
             return False
 
-        if value == Pawns.AGENT_PAWN:
+        if value == Pawns.USER_PAWN:
             return True
         else:
             return False
@@ -78,22 +79,5 @@ class AiAgent(Agent):
 
         return pawn_coordinates
 
-    def next_action(self, board: Board):
-
-        available_actions = self.fetch_available_pawn_actions(board)
-
-        if len(available_actions) == 0:
-            raise NoAgentActionException("Agent cannot move")
-        else:
-            number_of_pawns = len(available_actions)
-
-            random_number_index = random.randint(0, number_of_pawns - 1)
-            keys = list(available_actions.keys())
-            number_of_actions = len(
-                available_actions[keys[random_number_index]])
-            random_action_index = random.randint(0, number_of_actions - 1)
-
-            x = int(keys[random_number_index].split(',')[0])
-            y = int(keys[random_number_index].split(',')[1])
-
-            return Coordinate(x, y), available_actions[keys[random_number_index]][random_action_index]
+    def next_action(self, board: Board) -> ActionResponse:
+        return find_best_move(board)

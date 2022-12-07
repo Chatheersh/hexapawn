@@ -29,7 +29,7 @@ class Board:
 
         return board
 
-    def _validate(self, coordinate: Coordinate):
+    def validate(self, coordinate: Coordinate):
         return coordinate.x < 0 or coordinate.x >= self.length\
             or coordinate.y < 0 or coordinate.y >= self.length
 
@@ -45,7 +45,7 @@ class Board:
 
     def get_value(self, coordinate: Coordinate):
 
-        if self._validate(coordinate):
+        if self.validate(coordinate):
             raise Exception(f"coordinates {coordinate} are out of bounds")
 
         return self.board[self.length - coordinate.y - 1][coordinate.x]
