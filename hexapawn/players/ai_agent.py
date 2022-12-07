@@ -9,6 +9,7 @@ from hexapawn.players.minimax import find_best_move
 from hexapawn.players.no_action_exception import NoAgentActionException
 
 
+# this is the agent's percept of what the movements of the pawns would look like
 class AiAgent(Agent):
     def __init__(self):
         pass

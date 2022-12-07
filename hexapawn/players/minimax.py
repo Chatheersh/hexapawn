@@ -5,12 +5,14 @@ from hexapawn.environment.coordinate import Coordinate
 from hexapawn.environment.pawns import Pawns
 from hexapawn.players.action_response import ActionResponse
 
+# use minimax to find the best move in the game
 def find_best_move(board: Board):
 
     best_score = -1000
     best_move = Action.STRAIGHT
     best_coordinate = None
 
+    # iterate through the entire board to find the best move
     for i in range(0, board.length):
         for j in range(0, board.length):
             c = Coordinate(i, j)
@@ -56,6 +58,7 @@ def find_best_move(board: Board):
 
     return ActionResponse(best_coordinate, best_move)
 
+# minimax will score +1 for agent and -1 for user
 def minimax(board: Board, is_user=False):
     
     scores = []

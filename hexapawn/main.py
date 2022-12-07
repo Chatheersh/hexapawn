@@ -48,9 +48,12 @@ def main():
     board = Board()
     enviroment = Environment(board)
 
+    # instead of taking input from the user we will randomly select
+    # moves for the user to take
     user_agent = UserAgent()
     user_percept = UserPercept()
 
+    # the agent will use minimax to determine the best move
     ai_agent = AiAgent()
     ai_percept = AiPercept()
 
